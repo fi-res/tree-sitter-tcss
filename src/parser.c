@@ -2549,7 +2549,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') SKIP(51);
       if (lookahead == '-' ||
           ('0' <= lookahead && lookahead <= '9') ||
-          ('A' <= lookahead && lookahead <= 'Z')) ADVANCE(252);
+          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(252);
       END_STATE();
     case 54:
       if (lookahead == '/') ADVANCE(136);
@@ -3613,7 +3613,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       ACCEPT_TOKEN(aux_sym_variable_value_token1);
       if (lookahead == '-' ||
           ('0' <= lookahead && lookahead <= '9') ||
-          ('A' <= lookahead && lookahead <= 'Z')) ADVANCE(252);
+          ('a' <= lookahead && lookahead <= 'z')) ADVANCE(252);
       END_STATE();
     case 253:
       ACCEPT_TOKEN(anon_sym_SQUOTE);

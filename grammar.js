@@ -1,3 +1,4 @@
+/* eslint quotes: ["off"] */
 /**
  * @file TCSS grammar for tree-sitter
  * @author Max Brunsfeld <maxbrunsfeld@gmail.com>
@@ -339,7 +340,7 @@ export default grammar({
 
     color_value: (_) => seq("#", token.immediate(/[0-9a-fA-F]{3,8}/)),
 
-    variable_value: (_) => seq("$", token.immediate(/[0-9A-Z\-]+/)),
+    variable_value: (_) => seq("$", token.immediate(/[0-9a-z\-]+/)),
 
     string_value: ($) =>
       choice(
