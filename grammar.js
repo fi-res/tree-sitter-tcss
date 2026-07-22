@@ -12,7 +12,7 @@
 export default grammar({
   name: "tcss",
 
-  extras: ($) => [/\s/, $.comment, $.js_comment],
+  extras: ($) => [/\s/, $.comment],
 
   externals: ($) => [
     $._descendant_operator,
@@ -123,38 +123,6 @@ export default grammar({
 
     important: (_) => "!important",
 
-    // Media queries
-
-    _query: ($) =>
-      choice(
-        alias($.identifier, $.keyword_query),
-        $.feature_query,
-        $.binary_query,
-        $.unary_query,
-        $.selector_query,
-        $.parenthesized_query,
-      ),
-
-    feature_query: ($) =>
-      seq(
-        "(",
-        alias($.identifier, $.feature_name),
-        ":",
-        repeat1($._value),
-        ")",
-      ),
-
-    parenthesized_query: ($) => seq("(", $._query, ")"),
-
-    binary_query: ($) =>
-      prec.left(seq($._query, choice("and", "or"), $._query)),
-
-    unary_query: ($) => prec(1, seq(choice("not", "only"), $._query)),
-
-    selector_query: ($) => seq("selector", "(", $._selector, ")"),
-
-    // Property Values
-
     _value: ($) =>
       prec(
         -1,
@@ -166,15 +134,9 @@ export default grammar({
           $.integer_value,
           $.float_value,
           $.string_value,
-          $.grid_value,
-          $.binary_expression,
-          $.parenthesized_value,
-          $.call_expression,
           $.important,
         ),
       ),
-
-    parenthesized_value: ($) => seq("(", $._value, ")"),
 
     color_value: (_) => seq("#", token.immediate(/[0-9a-fA-F]{3,8}/)),
 
@@ -222,17 +184,6 @@ export default grammar({
 
     unit: (_) => token.immediate(/[a-zA-Z%]+/),
 
-    grid_value: ($) => seq("[", sep1(",", $._value), "]"),
-
-    call_expression: ($) =>
-      seq(alias($.identifier, $.function_name), $.arguments),
-
-    binary_expression: ($) =>
-      prec.left(seq($._value, choice("+", "-", "*", "/"), $._value)),
-
-    arguments: ($) =>
-      seq(token.immediate("("), sep(choice(",", ";"), repeat1($._value)), ")"),
-
     class_name: ($) =>
       seq(
         choice($.identifier, $.escape_sequence),
@@ -245,10 +196,6 @@ export default grammar({
       ),
 
     identifier: (_) => /(--|-?[a-zA-Z_\xA0-\xFF])[a-zA-Z0-9-_\xA0-\xFF]*/,
-
-    at_keyword: (_) => /@[a-zA-Z-_]+/,
-
-    js_comment: (_) => token(prec(-1, seq("//", /.*/))),
 
     comment: (_) => token(seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
 
