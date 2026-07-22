@@ -12,7 +12,7 @@
 export default grammar({
   name: "tcss",
 
-  extras: ($) => [/\s/, $.comment],
+  extras: ($) => [/\s/, $.comment, $.line_comment],
 
   externals: ($) => [
     $._descendant_operator,
@@ -197,7 +197,9 @@ export default grammar({
 
     identifier: (_) => /(--|-?[a-zA-Z_\xA0-\xFF])[a-zA-Z0-9-_\xA0-\xFF]*/,
 
-    comment: (_) => token(seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
+    comment: (_) => token(seq("/*", /.+/, "*/")),
+
+    line_comment: (_) => token(seq("#", /[^\n]+/)),
 
     plain_value: (_) =>
       token(
@@ -222,19 +224,6 @@ export default grammar({
       token(seq("!", /[a-zA-Z]/, repeat(/[a-zA-Z0-9-_]/))),
   },
 });
-
-/**
- * Creates a rule to optionally match one or more of the rules separated by `separator`
- *
- * @param {RuleOrLiteral} separator
- *
- * @param {RuleOrLiteral} rule
- *
- * @returns {ChoiceRule}
- */
-function sep(separator, rule) {
-  return optional(sep1(separator, rule));
-}
 
 /**
  * Creates a rule to match one or more of the rules separated by `separator`
