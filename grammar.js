@@ -76,7 +76,23 @@ export default grammar({
       seq(
         optional($._selector),
         alias($._pseudo_class_selector_colon, ":"),
-        $.class_name,
+        choice(
+          "blur",
+          "dark",
+          "disabled",
+          "empty",
+          "enabled",
+          "even",
+          "first-child",
+          "first-of-type",
+          "focus-within",
+          "focus",
+          "inline",
+          "last-child",
+          "last-of-type",
+          "light",
+          "odd",
+        ),
       ),
 
     id_selector: ($) =>
@@ -104,7 +120,7 @@ export default grammar({
         alias($.identifier, $.property_name),
         ":",
         $._value,
-        repeat(seq(optional(","), $._value)),
+        repeat(seq(" ", $._value)),
         optional($.important),
         ";",
       ),
@@ -116,7 +132,7 @@ export default grammar({
           alias($.identifier, $.property_name),
           ":",
           $._value,
-          repeat(seq(optional(","), $._value)),
+          repeat(seq(" ", $._value)),
           optional($.important),
         ),
       ),
@@ -138,7 +154,17 @@ export default grammar({
         ),
       ),
 
-    color_value: (_) => seq("#", token.immediate(/[0-9a-fA-F]{3,8}/)),
+    color_value: ($) =>
+      choice(seq("#", token.immediate(/[0-9a-fA-F]{3,8}/)), $.function),
+
+    function: ($) =>
+      seq(
+        choice("rgb", "rgba", "hsl", "hsla"),
+        "(",
+        repeat(seq(choice($.integer_value, $.float_value), ",", optional(" "))),
+        optional(choice($.integer_value, $.float_value)),
+        ")",
+      ),
 
     variable_value: (_) => seq("$", token.immediate(/[0-9a-z\-_]+/)),
 
@@ -182,7 +208,7 @@ export default grammar({
         optional($.unit),
       ),
 
-    unit: (_) => token.immediate(/[a-zA-Z%]+/),
+    unit: (_) => token.immediate(choice("%", "fr", "h", "vh", "w", "vw")),
 
     class_name: ($) =>
       seq(

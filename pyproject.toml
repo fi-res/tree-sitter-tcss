@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tree-sitter-tcss"
 description = "TCSS grammar for tree-sitter"
-version = "0.25.0"
+version = "0.1.0"
 keywords = ["incremental", "parsing", "tree-sitter", "tcss"]
 classifiers = [
   "Intended Audience :: Developers",
@@ -20,10 +20,6 @@ authors = [
 requires-python = ">=3.10"
 license.text = "MIT"
 readme = "README.md"
-
-[project.urls]
-Homepage = "https://github.com/tree-sitter/tree-sitter-tcss"
-Funding = "https://github.com/sponsors/tree-sitter"
 
 [project.optional-dependencies]
 core = ["tree-sitter~=0.24"]

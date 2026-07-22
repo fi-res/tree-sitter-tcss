@@ -142,7 +142,17 @@
   {
     "type": "color_value",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "function",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "declaration",
@@ -250,6 +260,25 @@
     }
   },
   {
+    "type": "function",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "float_value",
+          "named": true
+        },
+        {
+          "type": "integer_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "id_selector",
     "named": true,
     "fields": {},
@@ -320,15 +349,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
           "type": "child_selector",
-          "named": true
-        },
-        {
-          "type": "class_name",
           "named": true
         },
         {
@@ -548,6 +573,10 @@
     "fields": {}
   },
   {
+    "type": " ",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -561,6 +590,14 @@
   },
   {
     "type": "'",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
     "named": false
   },
   {
@@ -584,13 +621,61 @@
     "named": false
   },
   {
+    "type": "blur",
+    "named": false
+  },
+  {
     "type": "comment",
     "named": true,
     "extra": true
   },
   {
+    "type": "dark",
+    "named": false
+  },
+  {
+    "type": "disabled",
+    "named": false
+  },
+  {
+    "type": "empty",
+    "named": false
+  },
+  {
+    "type": "enabled",
+    "named": false
+  },
+  {
     "type": "escape_sequence",
     "named": true
+  },
+  {
+    "type": "even",
+    "named": false
+  },
+  {
+    "type": "first-child",
+    "named": false
+  },
+  {
+    "type": "first-of-type",
+    "named": false
+  },
+  {
+    "type": "focus",
+    "named": false
+  },
+  {
+    "type": "focus-within",
+    "named": false
+  },
+  {
+    "type": "hsl",
+    "named": false
+  },
+  {
+    "type": "hsla",
+    "named": false
   },
   {
     "type": "id_name",
@@ -605,6 +690,22 @@
     "named": true
   },
   {
+    "type": "inline",
+    "named": false
+  },
+  {
+    "type": "last-child",
+    "named": false
+  },
+  {
+    "type": "last-of-type",
+    "named": false
+  },
+  {
+    "type": "light",
+    "named": false
+  },
+  {
     "type": "line_comment",
     "named": true,
     "extra": true
@@ -614,12 +715,24 @@
     "named": true
   },
   {
+    "type": "odd",
+    "named": false
+  },
+  {
     "type": "plain_value",
     "named": true
   },
   {
     "type": "property_name",
     "named": true
+  },
+  {
+    "type": "rgb",
+    "named": false
+  },
+  {
+    "type": "rgba",
+    "named": false
   },
   {
     "type": "string_content",
