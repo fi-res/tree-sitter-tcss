@@ -2,21 +2,19 @@
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
   "grammars": [
     {
-      "name": "css",
-      "camelcase": "CSS",
-      "title": "CSS",
-      "scope": "source.css",
-      "file-types": [
-        "css"
-      ],
+      "name": "tcss",
+      "camelcase": "TCSS",
+      "title": "TCSS",
+      "scope": "source.tcss",
+      "file-types": ["tcss"],
       "highlights": "queries/highlights.scm",
-      "injection-regex": "^css$"
+      "injection-regex": "^tcss$"
     }
   ],
   "metadata": {
     "version": "0.25.0",
     "license": "MIT",
-    "description": "CSS grammar for tree-sitter",
+    "description": "TCSS grammar for tree-sitter",
     "authors": [
       {
         "name": "Max Brunsfeld",
@@ -28,7 +26,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/tree-sitter/tree-sitter-css",
+      "repository": "https://github.com/tree-sitter/tree-sitter-tcss",
       "funding": "https://github.com/sponsors/tree-sitter"
     }
   },

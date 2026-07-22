@@ -11,7 +11,7 @@ from wheel.bdist_wheel import bdist_wheel
 class Build(build):
     def run(self):
         if path.isdir("queries"):
-            dest = path.join(self.build_lib, "tree_sitter_css", "queries")
+            dest = path.join(self.build_lib, "tree_sitter_tcss", "queries")
             self.copy_tree("queries", dest)
         super().run()
 
@@ -48,30 +48,30 @@ setup(
     packages=find_packages("bindings/python"),
     package_dir={"": "bindings/python"},
     package_data={
-        "tree_sitter_css": ["*.pyi", "py.typed"],
-        "tree_sitter_css.queries": ["*.scm"],
+        "tree_sitter_tcss": ["*.pyi", "py.typed"],
+        "tree_sitter_tcss.queries": ["*.scm"]
     },
-    ext_package="tree_sitter_css",
+    ext_package="tree_sitter_tcss",
     ext_modules=[
         Extension(
             name="_binding",
             sources=[
-                "bindings/python/tree_sitter_css/binding.c",
-                "src/parser.c",
+                "bindings/python/tree_sitter_tcss/binding.c",
+                "src/parser.c"
             ],
             define_macros=[
                 ("PY_SSIZE_T_CLEAN", None),
-                ("TREE_SITTER_HIDE_SYMBOLS", None),
+                ("TREE_SITTER_HIDE_SYMBOLS", None)
             ],
             include_dirs=["src"],
-            py_limited_api=not get_config_var("Py_GIL_DISABLED"),
+            py_limited_api=not get_config_var("Py_GIL_DISABLED")
         )
     ],
     cmdclass={
         "build": Build,
         "build_ext": BuildExt,
         "bdist_wheel": BdistWheel,
-        "egg_info": EggInfo,
+        "egg_info": EggInfo
     },
     zip_safe=False
 )

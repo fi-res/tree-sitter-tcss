@@ -1,12 +1,12 @@
 import XCTest
 import SwiftTreeSitter
-import TreeSitterCSS
+import TreeSitterTCSS
 
-final class TreeSitterCSSTests: XCTestCase {
+final class TreeSitterTCSSTests: XCTestCase {
     func testCanLoadGrammar() throws {
         let parser = Parser()
-        let language = Language(language: tree_sitter_css())
+        let language = Language(language: tree_sitter_tcss())
         XCTAssertNoThrow(try parser.setLanguage(language),
-                         "Error loading CSS grammar")
+                         "Error loading TCSS grammar")
     }
 }

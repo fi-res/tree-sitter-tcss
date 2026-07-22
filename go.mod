@@ -1,4 +1,4 @@
-module github.com/tree-sitter/tree-sitter-css
+module github.com/tree-sitter/tree-sitter-tcss
 
 go 1.22
 

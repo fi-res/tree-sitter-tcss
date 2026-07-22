@@ -1095,7 +1095,7 @@ image-crop .sw {
  *
  * Released under MIT license. Copyright (c) 2018 GitHub Inc.
  */
-/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */html {
+/*! normalize.tcss v4.1.1 | MIT License | github.com/necolas/normalize.tcss */html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%}
@@ -3800,8 +3800,8 @@ to {
 .tooltipped-sticky.tooltipped-multiline::after {
     display: table-cell;
 }
-.css-truncate.css-truncate-target,
-.css-truncate .css-truncate-target {
+.tcss-truncate.tcss-truncate-target,
+.tcss-truncate .tcss-truncate-target {
     display: inline-block;
     max-width: 125px;
     overflow: hidden;
@@ -3809,8 +3809,8 @@ to {
     white-space: nowrap;
     vertical-align: top;
 }
-.css-truncate.expandable.zeroclipboard-is-hover .css-truncate-target,  .css-truncate.expandable.zeroclipboard-is-hover.css-truncate-target,
-.css-truncate.expandable:hover .css-truncate-target,  .css-truncate.expandable:hover.css-truncate-target {
+.tcss-truncate.expandable.zeroclipboard-is-hover .tcss-truncate-target,  .tcss-truncate.expandable.zeroclipboard-is-hover.tcss-truncate-target,
+.tcss-truncate.expandable:hover .tcss-truncate-target,  .tcss-truncate.expandable:hover.tcss-truncate-target {
     max-width: 10000px!important;
 }
 .anim-fade-in {
@@ -7571,4 +7571,4 @@ to {
     height: auto;
     clip: auto;
 }
-/*# sourceMappingURL=frameworks-1291ffafdf7ffb4d9be67d690fd09212.css.map */
+/*# sourceMappingURL=frameworks-1291ffafdf7ffb4d9be67d690fd09212.tcss.map */

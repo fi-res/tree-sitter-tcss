@@ -2,11 +2,11 @@
 Import statements
 ==============================
 
-@import url("fineprint.css") print;
-@import url("bluish.css") speech;
-@import 'custom.css';
+@import url("fineprint.tcss") print;
+@import url("bluish.tcss") speech;
+@import 'custom.tcss';
 @import url("chrome://communicator/skin/");
-@import "common.css" screen;
+@import "common.tcss" screen;
 
 ---
 

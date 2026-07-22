@@ -1,6 +1,6 @@
 {
   "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
-  "name": "css",
+  "name": "tcss",
   "rules": {
     "stylesheet": {
       "type": "REPEAT",
@@ -410,7 +410,7 @@
         }
       ]
     },
-    "postcss_statement": {
+    "posttcss_statement": {
       "type": "PREC",
       "value": -1,
       "content": {
@@ -614,7 +614,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "postcss_statement"
+          "name": "posttcss_statement"
         },
         {
           "type": "SYMBOL",
@@ -1775,6 +1775,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "variable_value"
+          },
+          {
+            "type": "SYMBOL",
             "name": "integer_value"
           },
           {
@@ -1837,6 +1841,22 @@
           "content": {
             "type": "PATTERN",
             "value": "[0-9a-fA-F]{3,8}"
+          }
+        }
+      ]
+    },
+    "variable_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "IMMEDIATE_TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "[0-9A-Z\\-]+"
           }
         }
       ]

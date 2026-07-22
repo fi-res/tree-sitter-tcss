@@ -470,7 +470,7 @@ div.composer {
 .infobar-widget.assignee {
     float: left;
 }
-.infobar-widget.assignee .css-truncate-target {
+.infobar-widget.assignee .tcss-truncate-target {
     max-width: 110px;
 }
 .infobar-widget .text, .infobar-widget .avatar, .infobar-widget .select-menu {
@@ -922,7 +922,7 @@ p.explain .minibutton {
     background-color: #f5f5f5;
     border-color: #e5e5e5;
 }
-.css-truncate.css-truncate-target, .css-truncate .css-truncate-target {
+.tcss-truncate.tcss-truncate-target, .tcss-truncate .tcss-truncate-target {
     display: inline-block;
     max-width: 125px;
     overflow: hidden;
@@ -930,7 +930,7 @@ p.explain .minibutton {
     white-space: nowrap;
     vertical-align: top;
 }
-.css-truncate.expandable.zeroclipboard-is-hover .css-truncate-target, .css-truncate.expandable.zeroclipboard-is-hover.css-truncate-target, .css-truncate.expandable:hover .css-truncate-target, .css-truncate.expandable:hover.css-truncate-target {
+.tcss-truncate.expandable.zeroclipboard-is-hover .tcss-truncate-target, .tcss-truncate.expandable.zeroclipboard-is-hover.tcss-truncate-target, .tcss-truncate.expandable:hover .tcss-truncate-target, .tcss-truncate.expandable:hover.tcss-truncate-target {
     max-width: 10000px !important;
 }
 .tooltipped {
@@ -1432,7 +1432,7 @@ p.explain .minibutton {
 .select-menu-item .hidden-select-button-text {
     display: none;
 }
-.select-menu-item .css-truncate-target {
+.select-menu-item .tcss-truncate-target {
     display: table-cell;
     max-width: 100%}
 form.select-menu-item>div:first-child {
@@ -2439,7 +2439,7 @@ body.menu-active .modal-backdrop {
 .markdown-body .line .support.constant {
     color: #FFD2A7;
 }
-.markdown-body .line .support.type.property-name.css {
+.markdown-body .line .support.type.property-name.tcss {
     color: #EDEDED;
 }
 .markdown-body .line .source .entity.name.tag, .markdown-body .line .source .entity.other.attribute-name, .markdown-body .line .meta.tag.inline, .markdown-body .line .meta.tag.inline .entity {
@@ -2466,29 +2466,29 @@ body.menu-active .modal-backdrop {
 .markdown-body .line .meta.tag, .markdown-body .line .meta.tag .entity {
     color: #96CBFE;
 }
-.markdown-body .line .meta.selector.css .entity.name.tag {
+.markdown-body .line .meta.selector.tcss .entity.name.tag {
     text-decoration: underline;
     color: #96CBFE;
 }
-.markdown-body .line .meta.selector.css .entity.other.attribute-name.tag.pseudo-class {
+.markdown-body .line .meta.selector.tcss .entity.other.attribute-name.tag.pseudo-class {
     color: #8F9D6A;
 }
-.markdown-body .line .meta.selector.css .entity.other.attribute-name.id {
+.markdown-body .line .meta.selector.tcss .entity.other.attribute-name.id {
     color: #8B98AB;
 }
-.markdown-body .line .meta.selector.css .entity.other.attribute-name.class {
+.markdown-body .line .meta.selector.tcss .entity.other.attribute-name.class {
     color: #62B1FE;
 }
-.markdown-body .line .meta.property-group .support.constant.property-value.css, .markdown-body .line .meta.property-value .support.constant.property-value.css {
+.markdown-body .line .meta.property-group .support.constant.property-value.tcss, .markdown-body .line .meta.property-value .support.constant.property-value.tcss {
     color: #F9EE98;
 }
 .markdown-body .line .meta.preprocessor.at-rule .keyword.control.at-rule {
     color: #8693A5;
 }
-.markdown-body .line .meta.property-value .support.constant.named-color.css, .markdown-body .line .meta.property-value .constant {
+.markdown-body .line .meta.property-value .support.constant.named-color.tcss, .markdown-body .line .meta.property-value .constant {
     color: #87C38A;
 }
-.markdown-body .line .meta.constructor.argument.css {
+.markdown-body .line .meta.constructor.argument.tcss {
     color: #8F9D6A;
 }
 .markdown-body .line .meta.diff, .markdown-body .line .meta.diff.header {
@@ -4041,7 +4041,7 @@ hr {
     margin: 0;
     line-height: 1.4;
 }
-.package-card .card-name .css-truncate-target, .project-card .card-name .css-truncate-target {
+.package-card .card-name .tcss-truncate-target, .project-card .card-name .tcss-truncate-target {
     color: #3b9b6d;
 }
 .package-card .keywords, .project-card .keywords {
@@ -4071,7 +4071,7 @@ hr {
 .package-card .body, .project-card .body {
     padding: 7px 13px;
 }
-.package-card .body .css-truncate-target, .project-card .body .css-truncate-target {
+.package-card .body .tcss-truncate-target, .project-card .body .tcss-truncate-target {
     max-width: 100%}
 .package-card p, .project-card p {
     margin: 0;
@@ -4251,7 +4251,7 @@ input.search-input {
     white-space: normal;
     line-height: 1.4;
 }
-.package-meta .css-truncate-target {
+.package-meta .tcss-truncate-target {
     max-width: 100%}
 .package-meta .minibutton {
     margin-top: 20px;
@@ -4420,7 +4420,7 @@ input.search-input {
 #crop-modal .jcrop-holder img {
     border: 1px solid #ddd !important;
 }
-.package-show .css-truncate-target {
+.package-show .tcss-truncate-target {
     max-width: auto;
     white-space: normal;
     overflow: auto;
@@ -4806,7 +4806,7 @@ input.search-input {
 .select-menu-item .hidden-select-button-text {
     display: none;
 }
-.select-menu-item .css-truncate-target {
+.select-menu-item .tcss-truncate-target {
     display: table-cell;
     max-width: 100%}
 form.select-menu-item>div:first-child {
@@ -4983,7 +4983,7 @@ body.menu-active .modal-backdrop {
     width: 40px;
     margin-right: 12px;
 }
-.user-card .css-truncate-target {
+.user-card .tcss-truncate-target {
     min-width: 360px;
 }
 .welcome {
@@ -5711,7 +5711,7 @@ a.hero-link {
 #peek .view:last-child {
     margin-right: 0;
 }
-#peek .css-truncate.css-truncate-target, #peek .css-truncate .css-truncate-target {
+#peek .tcss-truncate.tcss-truncate-target, #peek .tcss-truncate .tcss-truncate-target {
     display: inline-block;
     max-width: 125px;
     overflow: hidden;
@@ -5719,7 +5719,7 @@ a.hero-link {
     white-space: nowrap;
     vertical-align: top;
 }
-#peek .css-truncate.expandable:hover .css-truncate-target, #peek .css-truncate.expandable:hover.css-truncate-target {
+#peek .tcss-truncate.expandable:hover .tcss-truncate-target, #peek .tcss-truncate.expandable:hover.tcss-truncate-target {
     max-width: 10000px !important;
 }
 .performance-bar {
