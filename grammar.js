@@ -26,73 +26,9 @@ export default grammar({
     stylesheet: ($) => repeat($._top_level_item),
 
     _top_level_item: ($) =>
-      choice(
-        $.declaration,
-        $.rule_set,
-        $.import_statement,
-        $.media_statement,
-        $.charset_statement,
-        $.namespace_statement,
-        $.keyframes_statement,
-        $.supports_statement,
-        $.scope_statement,
-        $.at_rule,
-      ),
+      choice($.declaration, $.variable_declaration, $.rule_set),
 
     // Statements
-
-    import_statement: ($) => seq("@import", $._value, sep(",", $._query), ";"),
-
-    media_statement: ($) => seq("@media", sep1(",", $._query), $.block),
-
-    charset_statement: ($) => seq("@charset", $._value, ";"),
-
-    namespace_statement: ($) =>
-      seq(
-        "@namespace",
-        optional(alias($.identifier, $.namespace_name)),
-        choice($.string_value, $.call_expression),
-        ";",
-      ),
-
-    keyframes_statement: ($) =>
-      seq(
-        choice("@keyframes", alias(/@[-a-z]+keyframes/, $.at_keyword)),
-        alias($.identifier, $.keyframes_name),
-        $.keyframe_block_list,
-      ),
-
-    keyframe_block_list: ($) => seq("{", repeat($.keyframe_block), "}"),
-
-    keyframe_block: ($) =>
-      seq(sep1(",", choice($.from, $.to, $.integer_value)), $.block),
-
-    from: (_) => "from",
-    to: (_) => "to",
-
-    supports_statement: ($) => seq("@supports", $._query, $.block),
-
-    scope_statement: ($) =>
-      seq(
-        "@scope",
-        optional(
-          seq(
-            "(",
-            $._selector,
-            ")",
-            optional(seq("to", "(", $._selector, ")")),
-          ),
-        ),
-        $.block,
-      ),
-
-    posttcss_statement: ($) =>
-      prec(
-        -1,
-        seq($.at_keyword, repeat(choice($._value, $.important_value)), ";"),
-      ),
-
-    at_rule: ($) => seq($.at_keyword, sep(",", $._query), choice(";", $.block)),
 
     // Rule sets
 
@@ -109,39 +45,25 @@ export default grammar({
       ),
 
     _block_item: ($) =>
-      choice(
-        $.declaration,
-        $.rule_set,
-        $.import_statement,
-        $.media_statement,
-        $.charset_statement,
-        $.namespace_statement,
-        $.keyframes_statement,
-        $.supports_statement,
-        $.scope_statement,
-        $.posttcss_statement,
-        $.at_rule,
-      ),
+      choice($.declaration, $.variable_declaration, $.rule_set),
 
     // Selectors
 
     _selector: ($) =>
       choice(
         $.universal_selector,
-        alias($.identifier, $.tag_name),
+        $.tag_selector,
         $.class_selector,
         $.nesting_selector,
         $.pseudo_class_selector,
-        $.pseudo_element_selector,
         $.id_selector,
-        $.attribute_selector,
         $.string_value,
         $.child_selector,
         $.descendant_selector,
-        $.sibling_selector,
-        $.adjacent_sibling_selector,
-        $.namespace_selector,
       ),
+
+    tag_selector: ($) =>
+      seq(optional($.nesting_selector), alias($.identifier, $.tag_name)),
 
     nesting_selector: (_) => "&",
 
@@ -154,59 +76,11 @@ export default grammar({
       seq(
         optional($._selector),
         alias($._pseudo_class_selector_colon, ":"),
-        choice(
-          // Either a specific pseudo-class that can only accept a selector…
-          seq(
-            alias(
-              choice("has", "not", "is", "where", "host", "host-context"),
-              $.class_name,
-            ),
-            alias($.pseudo_class_with_selector_arguments, $.arguments),
-          ),
-
-          // …or an `nth-child` or `nth-last-child` selector (which can
-          // optionally accept a selector)…
-          $._nth_child_pseudo_class_selector,
-
-          // …or any other pseudo-class (for which we'll allow a more diverse set
-          // of arguments).
-          seq(
-            $.class_name,
-            optional(alias($.pseudo_class_arguments, $.arguments)),
-          ),
-
-          // …or a standalone `host` pseudo-class (as `:host` doesn't require arguments).
-          alias("host", $.class_name),
-        ),
-      ),
-
-    // Only `nth-child`/`nth-last-child`, not `nth-of-type`/`nth-last-of-type`,
-    // allows an optional filtering selector as a parameter.
-    _nth_child_pseudo_class_selector: ($) =>
-      seq(
-        alias(choice("nth-child", "nth-last-child"), $.class_name),
-        alias($.pseudo_class_nth_child_arguments, $.arguments),
-      ),
-
-    pseudo_element_selector: ($) =>
-      seq(
-        optional($._selector),
-        "::",
-        alias($.identifier, $.tag_name),
-        optional(alias($.pseudo_element_arguments, $.arguments)),
+        $.class_name,
       ),
 
     id_selector: ($) =>
       seq(optional($._selector), "#", alias($.identifier, $.id_name)),
-
-    attribute_selector: ($) =>
-      seq(
-        optional($._selector),
-        token(prec(1, "[")),
-        alias(choice($.identifier, $.namespace_selector), $.attribute_name),
-        optional(seq(choice("=", "~=", "^=", "|=", "*=", "$="), $._value)),
-        "]",
-      ),
 
     child_selector: ($) =>
       prec.left(seq(optional($._selector), ">", $._selector)),
@@ -214,52 +88,16 @@ export default grammar({
     descendant_selector: ($) =>
       prec.left(seq($._selector, $._descendant_operator, $._selector)),
 
-    sibling_selector: ($) =>
-      prec.left(seq(optional($._selector), "~", $._selector)),
-
-    adjacent_sibling_selector: ($) =>
-      prec.left(seq(optional($._selector), "+", $._selector)),
-
-    namespace_selector: ($) =>
-      prec.left(seq(optional($._selector), "|", $._selector)),
-
-    pseudo_class_arguments: ($) =>
-      seq(
-        token.immediate("("),
-        sep(",", choice($._selector, repeat1($._value))),
-        ")",
-      ),
-
-    pseudo_class_with_selector_arguments: ($) =>
-      seq(token.immediate("("), sep(",", $._selector), ")"),
-
-    pseudo_class_nth_child_arguments: ($) =>
-      prec(
-        -1,
-        seq(
-          token.immediate("("),
-          choice(
-            alias("even", $.plain_value),
-            alias("odd", $.plain_value),
-            $.integer_value,
-            alias($._nth_functional_notation, $.plain_value),
-          ),
-          optional(seq("of", $._selector)),
-          ")",
-        ),
-      ),
-
-    // An+B notation for `nth-child`/`nth-last-child`.
-    _nth_functional_notation: (_) => /-?(\d)*n\s*(\+\s*\d+)?/,
-
-    pseudo_element_arguments: ($) =>
-      seq(
-        token.immediate("("),
-        sep(",", choice($._selector, repeat1($._value))),
-        ")",
-      ),
-
     // Declarations
+
+    variable_declaration: ($) =>
+      seq(
+        alias($.variable_value, $.variable_name),
+        ":",
+        $._value,
+        optional($.important),
+        ";",
+      ),
 
     declaration: ($) =>
       seq(
@@ -340,7 +178,7 @@ export default grammar({
 
     color_value: (_) => seq("#", token.immediate(/[0-9a-fA-F]{3,8}/)),
 
-    variable_value: (_) => seq("$", token.immediate(/[0-9a-z\-]+/)),
+    variable_value: (_) => seq("$", token.immediate(/[0-9a-z\-_]+/)),
 
     string_value: ($) =>
       choice(
