@@ -199,7 +199,7 @@ export default grammar({
 
     comment: (_) => token(seq("/*", /.+/, "*/")),
 
-    line_comment: (_) => token(seq("#", /[^\n]+/)),
+    line_comment: (_) => token(seq("# ", /[^\n]+/)),
 
     plain_value: (_) =>
       token(
