@@ -345,12 +345,17 @@
     }
   },
   {
+    "type": "pseudo_class",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "pseudo_class_selector",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
           "type": "child_selector",
@@ -370,6 +375,10 @@
         },
         {
           "type": "nesting_selector",
+          "named": true
+        },
+        {
+          "type": "pseudo_class",
           "named": true
         },
         {
@@ -621,7 +630,15 @@
     "named": false
   },
   {
+    "type": "ansi",
+    "named": false
+  },
+  {
     "type": "blur",
+    "named": false
+  },
+  {
+    "type": "can-focus",
     "named": false
   },
   {
@@ -670,6 +687,10 @@
     "named": false
   },
   {
+    "type": "hover",
+    "named": false
+  },
+  {
     "type": "hsl",
     "named": false
   },
@@ -713,6 +734,10 @@
   {
     "type": "nesting_selector",
     "named": true
+  },
+  {
+    "type": "nocolor",
+    "named": false
   },
   {
     "type": "odd",

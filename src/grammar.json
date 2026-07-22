@@ -247,69 +247,89 @@
           "value": ":"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "blur"
-            },
-            {
-              "type": "STRING",
-              "value": "dark"
-            },
-            {
-              "type": "STRING",
-              "value": "disabled"
-            },
-            {
-              "type": "STRING",
-              "value": "empty"
-            },
-            {
-              "type": "STRING",
-              "value": "enabled"
-            },
-            {
-              "type": "STRING",
-              "value": "even"
-            },
-            {
-              "type": "STRING",
-              "value": "first-child"
-            },
-            {
-              "type": "STRING",
-              "value": "first-of-type"
-            },
-            {
-              "type": "STRING",
-              "value": "focus-within"
-            },
-            {
-              "type": "STRING",
-              "value": "focus"
-            },
-            {
-              "type": "STRING",
-              "value": "inline"
-            },
-            {
-              "type": "STRING",
-              "value": "last-child"
-            },
-            {
-              "type": "STRING",
-              "value": "last-of-type"
-            },
-            {
-              "type": "STRING",
-              "value": "light"
-            },
-            {
-              "type": "STRING",
-              "value": "odd"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "pseudo_class"
+        }
+      ]
+    },
+    "pseudo_class": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ansi"
+        },
+        {
+          "type": "STRING",
+          "value": "blur"
+        },
+        {
+          "type": "STRING",
+          "value": "can-focus"
+        },
+        {
+          "type": "STRING",
+          "value": "dark"
+        },
+        {
+          "type": "STRING",
+          "value": "disabled"
+        },
+        {
+          "type": "STRING",
+          "value": "enabled"
+        },
+        {
+          "type": "STRING",
+          "value": "focus-within"
+        },
+        {
+          "type": "STRING",
+          "value": "focus"
+        },
+        {
+          "type": "STRING",
+          "value": "hover"
+        },
+        {
+          "type": "STRING",
+          "value": "inline"
+        },
+        {
+          "type": "STRING",
+          "value": "light"
+        },
+        {
+          "type": "STRING",
+          "value": "nocolor"
+        },
+        {
+          "type": "STRING",
+          "value": "first-of-type"
+        },
+        {
+          "type": "STRING",
+          "value": "last-of-type"
+        },
+        {
+          "type": "STRING",
+          "value": "first-child"
+        },
+        {
+          "type": "STRING",
+          "value": "last-child"
+        },
+        {
+          "type": "STRING",
+          "value": "odd"
+        },
+        {
+          "type": "STRING",
+          "value": "even"
+        },
+        {
+          "type": "STRING",
+          "value": "empty"
         }
       ]
     },
